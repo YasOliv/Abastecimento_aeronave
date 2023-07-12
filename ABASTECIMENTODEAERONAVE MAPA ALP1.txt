@@ -1,0 +1,72 @@
+Algoritmo "abastecimentoDeAeronave"
+// Disciplina: Algoritmo e Lógica de Programação 1
+// Professor: Rogério Napoleão
+// Descrição: Cálculo de Combustível para Abastecimento de Aeronave
+// Aluna: Yasmin Oliveira do Nascimento
+// R.A: 22131045-5
+
+Procedimento ResultadosTrecho
+Inicio
+   trechoTotal <- (trechoPlanejado + trechoAlternativo)
+   margemDeSeguranca <- (trechoTotal * 30/100)
+   trechoComMargem <- (trechoTotal +  margemDeSeguranca)
+FimProcedimento
+
+Procedimento CalculoCombustivel
+Inicio
+   combustivelParaTrecho <- (trechoComMargem * mediaDaAeronave)
+   combustivelAbastecimento <- (combustivelParaTrecho - combustivelNoTanque)
+FimProcedimento
+
+Var
+   mediaDaAeronave, capacidadeMaxima, margemDeSeguranca : real
+   trechoPlanejado, trechoAlternativo, trechoTotal, trechoComMargem: real
+   combustivelNoTanque, combustivelParaTrecho, combustivelAbastecimento: real
+   vooAprovado: logico
+
+Inicio
+   vooAprovado <- (combustivelParaTrecho  + combustivelNoTanque <= capacidadeMaxima)
+
+   Escreval (" ------------------------------------ ")
+   Escreval ("  CÁLCULO DE COMBUSTÍVEL DA AERONAVE ")
+   Escreval (" ------------------------------------ ")
+
+   Escreval (" ")
+   Escreva (" -> Média de combustível da aeronave (em litros/km): ")
+   Leia (mediaDaAeronave)
+   Escreva (" -> Capacidade máxima do tanque (em litros): ")
+   Leia (capacidadeMaxima)
+   Escreva (" -> Quilometragem do Trecho Planejado: ")
+   Leia (trechoPlanejado)
+   Escreva (" -> Quilometragem do Trecho Alternativo: ")
+   Leia (trechoAlternativo)
+   Escreva (" -> Litros de combustível no tanque: ")
+   Leia (combustivelNoTanque)
+
+   ResultadosTrecho
+   CalculoCombustivel
+
+   Se (vooAprovado) entao
+      escreval (" ")
+      escreval (" -> Status do voo: VOO APROVADO, BOM VOO!")
+      escreval (" ")
+      escreval (" DADOS DO VOO: ")
+      escreval (" ")
+      Escreval (" -> O trecho principal é de ", trechoPlanejado, " quilômetros.")
+      Escreval (" -----------------------------------------------------------------------")
+      Escreval (" -> O trecho alternativo é de ", trechoAlternativo, " quilômetros.")
+      Escreval (" -----------------------------------------------------------------------")
+      Escreval (" -> O trecho total com margem de segurança  é de ", trechoComMargem, " quilômetros.")
+      Escreval (" -----------------------------------------------------------------------")
+      Escreval (" -> A quantidade de combustível para o trecho é de ", combustivelParaTrecho, " litros.")
+      Escreval (" -----------------------------------------------------------------------")
+      Escreval (" -> A quantidade de combustível para o abastecimento é de ", combustivelAbastecimento, " litros.")
+
+   Senao
+      Escreval ( " -> Status do voo: VOO REPROVADO! ")
+      Escreval ( " Reveja seu planejamento, por favor.")
+   FimSe
+
+
+
+Fimalgoritmo
